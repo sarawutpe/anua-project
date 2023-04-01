@@ -1,0 +1,93 @@
+--------------------------------------------------
+NOTE: Frontend | React.js
+--------------------------------------------------
+
+########## Vite SWC + react.js JavaScript ##########
+1. install vite swc + react JavaScript + SWC
+$ yarn create vite // https://vitejs.dev/guide/
+
+- run dev
+$ yarn dev
+
+- close dev
+$ ctrl + c
+
+# package name lists
+$ npm install react-router-dom // https://reactrouter.com/en/main
+$ npm install axios // https://axios-http.com/docs/intro
+$ npm install path
+
+########## config eslit ##########
+1. npm install --save-dev eslint eslint-plugin-react eslint-plugin-react-hooks
+
+2. create file .eslintrc
+{
+  "extends": ["plugin:react/recommended", "plugin:react-hooks/recommended"],
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
+  "parserOptions": {
+    "ecmaVersion": 2021,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "rules": {}
+}
+
+4. Add an ESLint script to your package.json file, like so:
+{
+  "scripts": {
+    "lint": "eslint --ext .js,.jsx src"
+  }
+}
+
+########## install tailwind css ##########
+1. install package
+$ npm install -D tailwindcss@latest postcss@latest autoprefixer@latest
+
+2. Create a new configuration file for Tailwind CSS:
+$ npx tailwindcss init -p
+
+3. Edit file tailwind.config.cjs
+module.exports = {
+  purge: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],
+  darkMode: false,
+  theme: {
+    extend: {},
+  },
+  variants: {
+    extend: {},
+  },
+  plugins: [],
+}
+
+4. Edit file postcss.config.cjs
+module.exports = {
+  plugins: [
+    require('tailwindcss'),
+    require('autoprefixer'),
+  ],
+};
+
+5. add import index.css
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+########## heroicons ##########
+https://heroicons.com/
+npm install @heroicons/react
+
+########## headlessui ##########
+npm install @headlessui/react@lates
+
+
+
+
+
+
+
