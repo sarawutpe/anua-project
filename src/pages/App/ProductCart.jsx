@@ -249,7 +249,7 @@ const Cart = () => {
                           <div className="mt-4 flex justify-end">
                             <button
                               type="button"
-                              className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                              className="inline-flex"
                               disabled={carts.length === 0}
                               onClick={() => setStep(2)}
                             >
@@ -323,14 +323,14 @@ const Cart = () => {
                               <div className="mt-4 flex justify-end gap-2">
                                 <button
                                   type="button"
-                                  className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                                  className="inline-flex"
                                   onClick={() => setStep(1)}
                                 >
                                   ย้อนกลับ
                                 </button>
                                 <button
                                   type="submit"
-                                  className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                                  className="inline-flex"
                                   disabled={isLoading}
                                 >
                                   สั่งสินค้า
