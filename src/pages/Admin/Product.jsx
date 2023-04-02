@@ -16,7 +16,6 @@ const Product = () => {
       const data = result.data || []
 
       if (result.success) {
-        console.log(data)
         setProducts(data)
       }
     } catch (error) {
