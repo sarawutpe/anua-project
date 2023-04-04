@@ -1,6 +1,7 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 
+// ธีมของ admin
 const AdminTheme = ({ children }) => {
   const navigate = useNavigate()
   return (

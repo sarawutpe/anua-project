@@ -9,6 +9,7 @@ import ProductAdd from './pages/Admin/ProductAdd'
 import ProductEdit from './pages/Admin/ProductEdit'
 import App from './pages/App/App'
 
+// กำหนดเส้นทางไฟล์หน้าเว็บ
 const router = createBrowserRouter([
   {
     path: '/',
@@ -47,6 +48,7 @@ const router = createBrowserRouter([
   }
 ])
 
+// ฟังก์ชันเรนเดอร์หน้าเว็บอันดับแรก (First)
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <RouterProvider router={router} />

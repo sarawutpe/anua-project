@@ -4,7 +4,9 @@ import { useNavigate } from 'react-router-dom';
 import Carousel from '../../components/Carousel';
 import Cart from './ProductCart';
 
+// ประกาศฟังก์ชัน app
 const App = () => {
+  // เรียกใช้ navigate เพื่อให้สามารถเปลี่ยนเส้นทางได้
   const navigate = useNavigate()
 
   return (

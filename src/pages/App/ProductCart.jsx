@@ -16,6 +16,8 @@ const Cart = () => {
     orderDetails: "",
   });
 
+
+  // จัดการ modal
   const handleOpenCart = () => {
     if (isOpenCart) {
       setIsOpenCart(false);
@@ -24,6 +26,7 @@ const Cart = () => {
     }
   };
 
+  // ฟังก์ชันเพิ่มสินค้าในตะกร้า
   const handleAddToCart = (selectedProduct) => {
     if (!selectedProduct) return;
 
@@ -33,24 +36,29 @@ const Cart = () => {
 
     if (productInCartIndex !== -1) {
       // Product is already in cart.
+      // กรณีที่ต้องการอับเดตจำนวนสินค้าในตะกร้า
       const updatedCarts = [...carts];
       updatedCarts[productInCartIndex].quantity += 1;
       setCarts(updatedCarts);
     } else {
       // Add a new product to cart.
+      // กรณีที่ต้องการเพิ่มสินค้าชิ้นใหม่ลงในตะกร้า
       const product = { ...selectedProduct, quantity: 1 };
       setCarts([...carts, product]);
     }
   };
 
+  // ฟังก์ชันลบสินค้าออกจากตะกร้า
   const handleRemoveFromCart = (selectedProduct) => {
     if (!selectedProduct) return;
     if (selectedProduct.quantity === 0) return;
 
+    // ค้นหาไอดีในตะกร้าว่ามีหรือไม่?
     const productInCartIndex = carts.findIndex(
       (item) => item.id === selectedProduct.id
     );
 
+    // กรณีที่มีสินค้าในตะกร้า
     if (productInCartIndex > -1) {
       // Product is already in cart.
       const updatedCarts = [...carts];
@@ -67,11 +75,13 @@ const Cart = () => {
 
         // ลดจำนวนสินค้าในตะกร้า
         updatedCarts[productInCartIndex].quantity -= 1;
+        // อับเดต state carts
         setCarts(updatedCarts);
       }
     }
   };
 
+  // ฟังก์ชันสำหรับเก็บค่า sub total 
   const getSubTotal = () => {
     let sum = 0
     sum = carts.reduce((prev, curr) => {
@@ -82,6 +92,7 @@ const Cart = () => {
     return sum.toFixed(2);
   };
 
+  // ฟังก์ชัน submit ข้อมูลไปยัง db
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
@@ -114,6 +125,7 @@ const Cart = () => {
     }
   };
 
+  // get ข้อมูลจาก db
   const fetchProducts = useCallback(async () => {
     try {
       setIsLoading(true);
@@ -130,6 +142,7 @@ const Cart = () => {
     }
   }, []);
 
+  // ถูกเรียกเมื่อหน้าเว็บโหลดเสร็จ
   useEffect(() => {
     fetchProducts();
   }, [fetchProducts]);

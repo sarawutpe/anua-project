@@ -16,9 +16,11 @@ const ProductAdd = () => {
   })
   const [fileImage, setFileImage] = useState(null)
 
+  // บันทึกข้อมูล
   const handleSubmit = async (e) => {
     try {
       e.preventDefault()
+      // เซ็ตโหลดเป็นจริง
       setIsLoading(true)
 
       // Create a new FormData object
@@ -29,17 +31,21 @@ const ProductAdd = () => {
       formData.append('price', product.price.toString())
       formData.append('stock', product.stock.toString())
 
+      // เช็คก่อนว่ามีรูปภาพหรือไม่ ถ้ามีค่อยบันทึกลงฟอร์ม
       if (fileImage) {
-        formData.append('image', fileImage.image)
+        formData.append('image', fileImage)
       }
 
+      // เรียกฟังก์ชันเพิ่มสินค้า
       const result = await addProduct(formData)
+      // เช็คว่าข้อมูลกลับมาถูกต้อง ถ้าถูกต้องให้เปลี่ยนหน้าไปหน้าหน้าแรก admin
       if (result.success) {
         navigate('/admin')
       }
     } catch (error) {
       console.log(error.message)
     } finally {
+      // สุดท้ายทำการปิดสถานะโหลด
       setIsLoading(false)
     }
   }

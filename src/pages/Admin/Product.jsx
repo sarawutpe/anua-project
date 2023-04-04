@@ -9,6 +9,7 @@ const Product = () => {
   const [products, setProducts] = useState([])
   const [isLoading, setIsLoading] = useState(false)
 
+  // ฟังก์ชัน get ข้อมูลสินค้า
   const fetchProducts = useCallback(async () => {
     try {
       setIsLoading(true)
@@ -25,10 +26,12 @@ const Product = () => {
     }
   }, [])
 
+  // ฟังก์ชันลบสินค้าและมีการเรียกใช้ confirm ก่อนลบ
   const handleDeleteProduct = async (id, code) => {
     try {
       const isConfirm = confirm(`คุณต้องการลบสินค้า ${code}?`)
 
+      // ถ้ากด confirm
       if (isConfirm) {
         const result = await deleteProduct(id)
 
@@ -41,6 +44,7 @@ const Product = () => {
     }
   }
 
+  // ถูกเรียกเมื่อหน้าเว็บโหลดเสร็จ
   useEffect(() => {
     fetchProducts()
   }, [fetchProducts])

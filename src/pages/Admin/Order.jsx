@@ -8,7 +8,7 @@ const Order = () => {
   const [orders, setOrders] = useState([])
   const [isLoading, setIsLoading] = useState(false)
 
-
+  // ฟังก์ชันแปลงข้อมูล json string เป็น array ที่พร้อมใช้งาน
   const convertOrders = (order) => {
     try {
       return JSON.parse(order) || []
@@ -18,6 +18,7 @@ const Order = () => {
     }
   }
 
+  // ฟัังก์ชันหา sub total
   const getSubTotal = (order) => {
     order = JSON.parse(order) || []
     if (order.length === 0) return
@@ -32,6 +33,7 @@ const Order = () => {
   };
 
 
+  // get ข้อมูลออร์เดอร์จากฐานข้อมูลและเก็บลงใน state
   const fetchOrders = useCallback(async () => {
     try {
       setIsLoading(true)
@@ -48,6 +50,7 @@ const Order = () => {
     }
   }, [])
 
+  // ฟังก์ชันถูกเรียกเมื่อหน้าเว็บโหลดเสร็จ
   useEffect(() => {
     fetchOrders()
   }, [fetchOrders])

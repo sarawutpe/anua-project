@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 
 export default function Carousel() {
+  // ปรับกาศไอดีที่ต้องการแสดงของสไลด์โดยค่าเริ่มต้นเป็น 1
   const [activeCarousel, setActiveCarousel] = useState(1)
 
+  // ประกาศรูปภาพสไลด์
   const [carousels, setCarousels] = useState([
     {
       id: 1,
@@ -24,11 +26,13 @@ export default function Carousel() {
     },
   ])
 
+  // ฟังก์ชันจัดการการย้อนกลับสไลด์ ถ้าไอดีตรงกับตัวแรกให้ไม่ทำงานฟังก์ชันนี้
   const handlePrev = () => {
     if (activeCarousel === carousels[0].id) return;
     setActiveCarousel(activeCarousel - 1);
   };
 
+  // ฟังก์ชันจัดการการย้อนกลับสไลด์ ถ้าไอดีตรงกับตัวสุดท้ายให้ไม่ทำงานฟังก์ชันนี้
   const handleNext = () => {
     if (activeCarousel === carousels[carousels.length - 1].id) return;
     setActiveCarousel(activeCarousel + 1);

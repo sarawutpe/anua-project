@@ -4,7 +4,9 @@ import React, { useCallback, useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 
 const ProductEdit = () => {
+  // ประกาศรับ productId จาก url param
   const { productId } = useParams()
+
   const navigate = useNavigate()
   const [isLoading, setIsLoading] = useState(false)
   const [product, setProduct] = useState({
@@ -17,6 +19,7 @@ const ProductEdit = () => {
   })
   const [fileImage, setFileImage] = useState(null)
 
+  // get สินค้าโดยใช้ id อ้่างอิง
   const fetchProductById = useCallback(async () => {
     try {
       if (!productId) return
@@ -24,15 +27,14 @@ const ProductEdit = () => {
 
       const result = await getProductById(productId)
       if (result.success) {
-        setProduct((prev) => ({
-          ...prev,
+        setProduct({
           code: result.data.code,
           name: result.data.name,
           description: result.data.description,
           price: result.data.price.toString(),
           stock: result.data.stock.toString(),
           image: result.data.image,
-        }))
+        })
       }
     } catch (error) {
       console.log(error.message)
@@ -41,11 +43,13 @@ const ProductEdit = () => {
     }
   }, [productId])
 
+  // ฟังก์ชันบันทึกข้อมูล
   const handleSubmit = async (e) => {
     try {
       e.preventDefault()
       setIsLoading(true)
 
+      // สร้าง formdata ขึ้นมาเพืื่อข้อมูล
       // Create a new FormData object
       const formData = new FormData()
       formData.append('code', product.code)
@@ -54,6 +58,7 @@ const ProductEdit = () => {
       formData.append('price', product.price.toString())
       formData.append('stock', product.stock.toString())
 
+      // เช็คก่อนว่ามีรูปภาพที่ต้องการแก้ไขหรือไม่
       if (fileImage) {
         formData.append('image', fileImage)
       }
@@ -70,6 +75,7 @@ const ProductEdit = () => {
 
   }
 
+  // ฟังก์ชันถูกเรียกเมื่อหน้าเว็บโหลดเสร็จ
   useEffect(() => {
     fetchProductById()
   }, [fetchProductById])
